@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.record-form.ant-form-inline .ant-form-item {
+  margin-bottom: 12px;
+}
+
+.record-form.ant-form-inline {
+  margin-bottom: -12px;
+}
