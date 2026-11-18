@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum RecordType {
+  income
+  expense
+
+  @@map("record_type")
+}
+
+model Record {
+  id        String     @id @default(uuid())
+  type      RecordType
+  amount    Decimal    @db.Decimal(12, 2)
+  category  String     @db.VarChar(64)
+  note      String     @default("") @db.VarChar(500)
+  date      DateTime   @db.Date
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([date])
+  @@map("records")
+}
