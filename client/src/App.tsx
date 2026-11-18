@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import { Layout, Typography } from "antd";
-import { HealthPanel } from "./components/HealthPanel";
 import { RecordPanel } from "./components/RecordPanel";
 import { StatsPanel } from "./components/StatsPanel";
+import styles from "./App.module.css";
 
 const { Content } = Layout;
 
@@ -13,12 +13,11 @@ function App() {
   }, []);
 
   return (
-    <Layout style={{ minHeight: "100vh", background: "#f5f5f5" }}>
-      <Content style={{ maxWidth: 960, margin: "0 auto", padding: "24px 16px" }}>
-        <Typography.Title level={4} style={{ marginBottom: 20 }}>
+    <Layout className={styles.layout}>
+      <Content className={styles.content}>
+        <Typography.Title level={4} className={styles.title}>
           记账本
         </Typography.Title>
-        <HealthPanel />
         <StatsPanel refreshKey={refreshKey} />
         <RecordPanel onChanged={handleRecordsChanged} />
       </Content>

@@ -1,0 +1,37 @@
+.panel {
+  margin-bottom: 16px;
+}
+
+.form:global(.ant-form-inline) {
+  margin-bottom: -12px;
+}
+
+.form:global(.ant-form-inline) :global(.ant-form-item) {
+  margin-bottom: 12px;
+}
+
+.amountInput {
+  width: 120px;
+}
+
+.categorySelect {
+  width: 110px;
+}
+
+.noteInput {
+  width: 150px;
+}
+
+.datePicker {
+  width: 130px;
+}
+
+.income {
+  color: #3f8600;
+  font-weight: 600;
+}
+
+.expense {
+  color: #cf1322;
+  font-weight: 600;
+}

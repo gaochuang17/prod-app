@@ -24,6 +24,7 @@ import {
   type Record,
   type RecordType,
 } from "../api/records";
+import styles from "./RecordPanel.module.css";
 
 const EXPENSE_CATEGORIES = ["餐饮", "交通", "购物", "娱乐", "居住", "医疗", "其他"];
 const INCOME_CATEGORIES = ["工资", "奖金", "理财", "红包", "其他"];
@@ -116,12 +117,7 @@ export function RecordPanel({ onChanged }: RecordPanelProps) {
       width: 120,
       align: "right",
       render: (_, record) => (
-        <span
-          style={{
-            color: record.type === "income" ? "#3f8600" : "#cf1322",
-            fontWeight: 600,
-          }}
-        >
+        <span className={record.type === "income" ? styles.income : styles.expense}>
           {record.type === "income" ? "+" : "-"}¥{record.amount.toFixed(2)}
         </span>
       ),
@@ -146,10 +142,10 @@ export function RecordPanel({ onChanged }: RecordPanelProps) {
 
   return (
     <>
-      <Card title="记一笔" size="small" style={{ marginBottom: 16 }}>
+      <Card title="记一笔" size="small" className={styles.panel}>
         <Form<RecordFormValues>
           form={form}
-          className="record-form"
+          className={styles.form}
           layout="inline"
           onFinish={(values) => void handleFinish(values)}
           initialValues={{ type: "expense", date: dayjs() }}
@@ -166,21 +162,31 @@ export function RecordPanel({ onChanged }: RecordPanelProps) {
             </Radio.Group>
           </Form.Item>
           <Form.Item name="amount" label="金额" rules={[{ required: true, message: "请输入金额" }]}>
-            <InputNumber min={0.01} precision={2} placeholder="0.00" style={{ width: 120 }} />
+            <InputNumber
+              min={0.01}
+              precision={2}
+              placeholder="0.00"
+              className={styles.amountInput}
+            />
           </Form.Item>
           <Form.Item name="category" label="分类" rules={[{ required: true, message: "请选择分类" }]}>
             <Select
               placeholder="选择分类"
-              style={{ width: 110 }}
+              className={styles.categorySelect}
               options={categories.map((category) => ({ value: category, label: category }))}
             />
           </Form.Item>
           <Form.Item name="note" label="备注">
-            <Input placeholder="选填" style={{ width: 150 }} maxLength={50} allowClear />
+            <Input
+              placeholder="选填"
+              className={styles.noteInput}
+              maxLength={50}
+              allowClear
+            />
           </Form.Item>
           <Form.Item name="date" label="日期" rules={[{ required: true, message: "请选择日期" }]}>
             <DatePicker
-              style={{ width: 130 }}
+              className={styles.datePicker}
               allowClear={false}
               disabledDate={(current) => current.isAfter(dayjs(), "day")}
             />
@@ -193,7 +199,7 @@ export function RecordPanel({ onChanged }: RecordPanelProps) {
         </Form>
       </Card>
 
-      <Card title="账单明细" size="small">
+      <Card title="账单明细" size="small" className={styles.panel}>
         <Table
           columns={columns}
           dataSource={records}

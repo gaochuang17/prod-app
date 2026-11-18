@@ -1,0 +1,11 @@
+.statsRow {
+  margin-bottom: 16px;
+}
+
+.incomeStatistic :global(.ant-statistic-content-value) {
+  color: #3f8600;
+}
+
+.expenseStatistic :global(.ant-statistic-content-value) {
+  color: #cf1322;
+}
